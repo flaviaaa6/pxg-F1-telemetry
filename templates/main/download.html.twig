@@ -1,0 +1,122 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Download!{% endblock %}
+
+{% block body %}
+
+
+
+    {% if app.user %}
+        <a href="{{ path('admin_new_logiciel', {'id':versions[0].logiciel.id}) }}">
+            <button class="btn btn-secondary btn-sm">update software</button>
+        </a>
+    {% endif %}
+
+    <h3 class="mx-auto">Latest Version</h3>
+
+
+    {% if (versions) %}
+
+
+
+
+        <div class="card mx-auto" style="width: 25rem;">
+            <div class="card-body">
+                <h5 class="card-title">version {{ versions[0].numero }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Released date
+                    : {{ versions[0].dateAjout|date('d/m/Y') }} </h6>
+                <p class="card-text">{{ versions[0].commentaires }}</p>
+                <p class="card-text">Logiciel : {{ versions[0].logiciel.nom }}</p>
+                {% if app.user %}
+                    <p class="card-text">Author : {{ versions[0].author.pseudo }}</p>
+                {% endif %}
+                <a href="{{ versions[0].urlWin }}" class="btn btn-outline-dark">Download For Windows</a>
+                <a href="{{ versions[0].urlMac }}" class="btn btn-outline-dark">Download For Mac</a>
+                {% if app.user %}
+                    <a href="{{ path('admin_new_version', {'id':versions[0].id}) }}">
+                        <button class="btn btn-secondary btn-sm">Edit</button>
+                    </a>
+                    <button class="btn btn-secondary btn-sm"
+                            onclick="if (confirm('Do you really want to delete this version ?')){window.location='{{ path('admin_delete_version', {'id': versions[0].id, 'token': app.session.get(versions[0].id)}) }}';}">
+                        Delete
+                    </button>
+                {% endif %}
+            </div>
+        </div>
+
+    {% endif %}
+
+
+    <hr>
+
+    <h3>Older Versions</h3>
+
+
+
+    <div class="row">
+        {% if (versions) %}
+            {% set olderVersions = versions|slice(1) %}
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">version</th>
+                        <th scope="col">Released date</th>
+                        <th scope="col">Comments</th>
+                        {% if app.user %}
+                            <th scope="col">Author</th>
+                        {% endif %}
+                        <th scope="col">Windows</th>
+                        <th scope="col">Mac</th>
+                        {% if app.user %}
+                            <th scope="col"></th>
+                        {% endif %}
+                        {% if app.user %}
+                            <th scope="col"></th>
+                        {% endif %}
+
+                    </tr>
+                </thead>
+                <tbody>
+                {% for version in olderVersions %}
+                    <tr>
+                        <td>{{ version.numero }}</td>
+                        <td>{{ version.dateAjout|date('d/m/Y') }}</td>
+                        <td>{{ version.commentaires }}</td>
+                        {% if app.user %}
+                            <td class="card-text">{{ version.author.pseudo }}</td>
+                        {% endif %}
+                        <td><a href="{{ version.urlWin }}" class="btn btn-outline-dark">Download</a></td>
+                        <td><a href="{{ version.urlMac }}" class="btn btn-outline-dark">Download</a></td>
+                        {% if app.user %}
+                            <td><a href="{{ path('admin_new_version', {'id':version.id}) }}">
+                                    <button class="btn btn-secondary btn-sm">Edit</button>
+                                </a>
+                            </td>
+                            <td><button class="btn btn-secondary btn-sm"
+                                        onclick="if (confirm('Do you really want to delete this version ?')){window.location='{{ path('admin_delete_version', {'id': version.id, 'token': app.session.get(version.id)}) }}';}">
+                                    Delete
+                                </button>
+                            </td>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+        {% endif %}
+    </div>
+    <br>
+
+    {% if app.user %}
+        <a href="{{ url('admin_new_version') }}">
+            <button class="btn btn-secondary btn-sm">Add a version</button>
+        </a><br>
+    {% endif %}
+    <br><br>
+    <a href="https://bitbucket.org/Fiingon/pxg-f1-telemetry/src/master/">Source code</a>
+    <br>
+
+
+
+{% endblock %}

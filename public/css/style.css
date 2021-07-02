@@ -1,0 +1,39 @@
+h1{
+    font-size: 50px;
+    text-align: center;
+    margin: 30px;
+    font-family: "American Typewriter";
+}
+
+h2{
+    margin-bottom: 100px;
+}
+h3{
+    text-align: center;
+    padding: 20px;
+}
+nav {
+    padding: 40px;
+}
+
+nav a {
+    font-weight: bold;
+    font-size: large;
+
+}
+.icon{
+    height: 130px;
+    position: relative;
+    top: 80px;
+    left: 80px;
+}
+.screenshot{
+    width: 60vw;
+    margin-left: 15vw;
+}
+.intro{
+    text-align: center;
+    font-family: "Droid Sans";
+
+}
+

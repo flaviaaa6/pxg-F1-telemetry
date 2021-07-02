@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Update profile{% endblock %}
+
+{% block body %}
+    {% for flashError in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+    {% endfor %}
+
+
+    <h2>Update profil :</h2>
+
+
+    {{ form_start(userFormView) }}
+    {{ form_row(userFormView.email) }}
+    {{ form_row(userFormView.pseudo) }}
+    {{ form_row(userFormView.roles) }}
+    {{ form_row(userFormView.plainPassword, {
+        label: 'Password'
+    }) }}
+
+
+
+    <button type="submit" class="btn">Register</button>
+    {{ form_end(userFormView) }}
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Version{% endblock %}
+
+{% block body %}
+
+    {% if (id) %}
+        <h2>Update a version :</h2>
+    {% else %}
+        <h2>Add a version :</h2>
+    {% endif %}
+
+    {{ form_start(versionFormView) }}
+    {{ form_errors(versionFormView) }}
+
+    {{ form_label(versionFormView.numero) }}
+    {{ form_widget(versionFormView.numero) }}
+    {{ form_errors(versionFormView.numero) }}
+
+    {{ form_label(versionFormView.commentaires) }}
+    {{ form_widget(versionFormView.commentaires) }}
+    {{ form_errors(versionFormView.commentaires) }}
+
+    {{ form_label(versionFormView.urlMac) }}
+    {{ form_widget(versionFormView.urlMac) }}
+    {{ form_errors(versionFormView.urlMac) }}
+
+    {{ form_label(versionFormView.urlWin) }}
+    {{ form_widget(versionFormView.urlWin) }}
+    {{ form_errors(versionFormView.urlWin) }}
+
+    {{ form_label(versionFormView.logiciel) }}
+    {{ form_widget(versionFormView.logiciel) }}
+    {{ form_errors(versionFormView.logiciel) }}
+
+
+
+    {{ form_end(versionFormView) }}
+
+
+
+{% endblock %}

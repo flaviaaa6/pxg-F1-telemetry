@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Administration{% endblock %}
+
+{% block body %}
+
+    <h2>Administration</h2>
+    <a href="{{ url('admin_new_logiciel') }}">
+        <button class="btn btn-secondary">Add a Software</button>
+    </a>
+    <a href="{{ url('admin_new_version') }}">
+        <button class="btn btn-secondary">Add a version</button>
+    </a>
+    <a href="{{ path('app_register', {'id':app.user.id}) }}">
+        <button class="btn btn-secondary">Update your profile</button>
+    </a>
+
+    {% if is_granted('ROLE_ADMIN') %}
+        <a href="{{ path('app_register') }}">
+            <button class="btn btn-secondary">Add a user</button>
+        </a>
+        <a href="{{ path('admin_profil') }}">
+            <button class="btn btn-secondary">Overview profiles</button>
+        </a>
+    {% endif %}
+
+
+{% endblock %}

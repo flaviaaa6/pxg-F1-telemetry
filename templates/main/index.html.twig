@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Home{% endblock %}
+
+{% block body %}
+
+    <article class="description">
+        F1 Telemetry is able to analyse laps, stints (multiple consecutive laps) and races of every drivers in the
+        session (human or a.i.).<br>
+
+        It allows you to :<br>
+        <ul>
+            <li>
+                Compare your laps with the A.I. or other drivers to improve your driving
+            </li>
+            <li>
+                Refine your setups
+            </li>
+            <li>
+                Prepare your own practice programmes
+            </li>
+            <li>
+                Analyse what happend during a race
+            </li>
+        </ul>
+        <div>
+            Data of the selected drivers is recorded on the hard drive during the sessions and can be reviewed later.
+        </div>
+        <br>
+        <div>
+            Analysis available for laps : Speed, Throttle input, Brake input, Steering input, Gear, Time differences,
+            Engine RPM, Tyre wear, Tyre temperatures, Tyre stress, Suspension, ERS balance, Tyres lockup, Car balance
+            i.e. oversteer / understeer, Multiple laps comparison, Car trajectory comparison, Coasting
+
+        </div>
+        <br>
+        <div>
+            Analysis available for stints : Lap times, Average tyre wear per lap, Average tyre temperature, Fuel
+            consumption, ERS energy, Multiple stints comparison
+
+        </div>
+        <br>
+        <div>
+            Analysis available for races : Race position, Race time, Lap times, Tyre life, Fuel consumption, ERS energy,
+            Weather changes, Air / track temperature, Front wing damage, Pitstop duration, Penalties received, Flashback
+            count
+
+        </div>
+
+
+    </article>
+
+    <div>
+        <img class="screenshot" src="https://bitbucket.org/Fiingon/pxg-f1-telemetry.git/raw/master/Screenshots/Laps.png"
+             alt="screenshot">
+    </div>
+
+    <a href="{{ url('download') }}">
+        <button class="btn btn-dark">Download</button>
+    </a>
+{% endblock %}

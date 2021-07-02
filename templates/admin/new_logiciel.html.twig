@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New software{% endblock %}
+
+{% block body %}
+
+    {% if (id) %}
+        <h2>Update a Software :</h2>
+    {% else %}
+        <h2>Add a Software :</h2>
+    {% endif %}
+
+    {{ form_start(logicielFormView) }}
+    {{ form_errors(logicielFormView) }}
+
+    {{ form_label(logicielFormView.nom) }}
+    {{ form_widget(logicielFormView.nom) }}
+    {{ form_errors(logicielFormView.nom) }}
+
+    {{ form_end(logicielFormView) }}
+
+
+
+{% endblock %}

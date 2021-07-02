@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Overview profiles{% endblock %}
+
+{% block body %}
+
+    <h2>Overview profiles</h2>
+
+    <div class="row">
+        {% if (users) %}
+            {% for user in users %}
+
+                <div class="col-sm-4">
+                    <div class="card" style="width: 20rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">Pseudo : {{ user.pseudo }}</h5>
+                            <p class="card-text">email : {{ user.email }}</p>
+                            <p class="card-text">role :
+                                {% for role in user.roles %}
+                                    {{ role }}
+                                {% endfor %}
+                            </p>
+
+                            <a href="{{ path('admin_update_profil', {'id':user.id}) }}"><button class = "btn btn-secondary btn-sm">edit</button></a>
+                            {% if not (app.user.id == user.id) %}
+                                <button onclick="if (confirm('Do you really want to delete this user ?')){window.location='{{ path('admin_delete_user', {'id': user.id}) }}';}">delete</button>
+                            {% endif %}
+
+                        </div>
+                    </div>
+                    <br><br>
+                </div>
+
+            {% endfor %}
+        {% endif %}
+    </div>
+    <br>
+    <a href="{{ path('app_register') }}"><button class = "btn btn-secondary">Add a user</button></a>
+
+
+
+{% endblock %}
